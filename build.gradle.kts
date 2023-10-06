@@ -41,3 +41,12 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+graalvmNative {
+	binaries {
+		named("github.native.demo") {
+			verbose.set(true)
+			buildArgs.add("-march=compatibility")
+		}
+	}
+}
