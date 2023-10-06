@@ -11,8 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        #os: [macos-latest, ubuntu-latest]
-        os: [ ubuntu-latest ]
+        os: [ macos-latest, ubuntu-latest ]
     steps:
       - uses: actions/checkout@v4
       - uses: graalvm/setup-graalvm@v1
@@ -32,4 +31,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          name: github.native.demo-${{ matrix.os }}
           files: build/native/nativeCompile/github.native.demo
