@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: HelloWorld on ${{ matrix.os }}
+    name: Build on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -27,9 +27,14 @@ jobs:
           native-image --version
       - name: Build using Gradle plugin # https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html
         run: ./gradlew nativeCompile
+      - name: Rename executable
+        run: |
+          echo "matrix.os = ${{ matrix.os }}"
+          ls -latrh build/native/nativeCompile/
+          mv build/native/nativeCompile/github.native.demo build/native/nativeCompile/github.native.demo-${{ matrix.os }}
+          echo after mv
       - name: Upload build to Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: github.native.demo-${{ matrix.os }}
-          files: build/native/nativeCompile/github.native.demo
+          files: build/native/nativeCompile/github.native.demo-${{ matrix.os }}
