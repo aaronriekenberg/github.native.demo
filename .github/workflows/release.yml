@@ -31,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: github.native.demo-${{ matrix.os }}
-          path: build/native/nativeCompile/github.github.native.demo
+          path: build/native/nativeCompile/github.native.demo
