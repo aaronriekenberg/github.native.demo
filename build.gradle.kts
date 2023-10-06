@@ -44,7 +44,7 @@ tasks.withType<Test> {
 
 graalvmNative {
 	binaries {
-		named("github.native.demo") {
+		named("main") {
 			verbose.set(true)
 			buildArgs.add("-march=compatibility")
 		}
