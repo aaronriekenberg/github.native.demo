@@ -33,3 +33,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: build/native/nativeCompile/github.native.demo
+          token: ${{ secrets.GITHUB_TOKEN }}
